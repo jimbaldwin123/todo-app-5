@@ -16,3 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('projects', 'ProjectsController@index');
+
+Route::controller('datatables', 'ProjectsController', [
+    'anyData'  => 'datatables.data',
+    'getIndex' => 'datatables',
+]);
