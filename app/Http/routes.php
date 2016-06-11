@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('projects', 'ProjectsController@index');
+Route::get('project/{id}', 'ProjectsController@show');
 
-Route::controller('datatables', 'ProjectsController', [
+Route::controller('/', 'ProjectsController', [
     'anyData'  => 'datatables.data',
     'getIndex' => 'datatables',
 ]);

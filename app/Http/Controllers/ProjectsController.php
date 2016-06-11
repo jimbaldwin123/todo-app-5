@@ -33,7 +33,13 @@ class ProjectsController extends Controller
     {
         $projects = Project::all();
         \Log::debug('XXXXXXXXXXXXXXXXX ', ['projects' => $projects]);
-        return Datatables::of($projects)->make(true);
+        return Datatables::of($projects)
+            ->editColumn('name','<a href="project/{{$id}}" >{{$name}}</a>')
+            ->make(true);
     }
 
+    public function show($id)
+    {
+        return view('show',['project' => Project::find($id)]);
+    }
 }
