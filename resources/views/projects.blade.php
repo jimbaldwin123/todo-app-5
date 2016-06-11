@@ -19,7 +19,7 @@
     </table>
  
     <p>
-        create project
+        {{--{!! link_to_route('projects.create', 'Create Project') !!}--}}
     </p>
 @endsection
 

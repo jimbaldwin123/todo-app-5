@@ -24,15 +24,15 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
-
+Route::resource('tasks', 'TasksController');
 
 Route::get('/project/{id}', 'ProjectsController@show');
 Route::get('/datatables/data2/{id}','ProjectsController@anyProject');
-
-Route::resource('tasks', 'TasksController');
-
 
 Route::controller('/', 'ProjectsController', [
     'anyData'  => 'datatables.data',
     'getIndex' => 'datatables',
 ]);
+
+
+
