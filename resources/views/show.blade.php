@@ -1,35 +1,44 @@
 @extends('app')
 
 @section('content')
-    <h1>Project: {{ $project->name }}</h1>
-   
+    <h2>Projects</h2>
 
 
+    <div></div>
 
+    <table class="table table-bordered" id="projects-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Slug</th>
+        </tr>
+        </thead>
+    </table>
 
-            <div class="container-fluid">
-
-<h2>H2</h2>
-
-                
-                @foreach($project->tasks as $task)
-
-
-                    <div class="row" >
-                        <div class="col-xs-1">{{ $task->id }} </div>
-                        <div class="col-xs-3">{{ $task->name }}</a></div>
-                        <div class="col-xs-3">{{ $task->description }}</div>
-                        <div class="col-xs-2">{{ date('Y-m-d', strtotime($task->updated_at)) }}</div>
-                        <div class="col-xs-1">{{ $task->completed ? 'Yes' : 'No'}}</div>
-
-                    </div>
-
-                @endforeach
-            </div>
-  
-
+    <p>
+        create project
+    </p>
 @endsection
 
+@push('scripts')
+<script>
+    $(function() {
+
+        $('#projects-table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '/datatables/data2/{{ $project_id }}',
+            columns: [
+                { data: 'id', name: 'id' },
+                { data: 'name', name: 'name' },
+                { data: 'slug', name: 'slug' }
+
+            ]
+        });
+    });
+</script>
+@endpush
 
 
 

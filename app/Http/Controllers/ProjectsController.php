@@ -20,7 +20,6 @@ class ProjectsController extends Controller
      */
     public function getIndex()
     {
-        \Log::debug('YYYYYYYYYYYYYYYYYY ');
         return view('projects');
     }
 
@@ -32,14 +31,35 @@ class ProjectsController extends Controller
     public function anyData()
     {
         $projects = Project::all();
-        \Log::debug('XXXXXXXXXXXXXXXXX ', ['projects' => $projects]);
         return Datatables::of($projects)
             ->editColumn('name','<a href="project/{{$id}}" >{{$name}}</a>')
             ->make(true);
     }
 
+    /**
+     * Displays datatables front end view
+     *
+     * @return \Illuminate\View\View
+     */
     public function show($id)
     {
-        return view('show',['project' => Project::find($id)]);
+        return view('show', ['project_id' => $id]);
     }
+
+    public function AnyProject($id)
+    {
+        $tasks = Project::find($id)->tasks;
+        return Datatables::of($tasks)->make(true);
+    }
+
+
+
+
+
+//    public function show($id)
+//    {
+//
+//        $tasks = Project::find($id)->tasks;
+//        return view('show',['project' => Project::find($id)]);
+//    }
 }

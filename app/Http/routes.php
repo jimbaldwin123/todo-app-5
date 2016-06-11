@@ -15,9 +15,21 @@
 //     return view('welcome');
 // });
 
-Route::get('project/{id}', 'ProjectsController@show');
+// Route::get('project/{id}', 'ProjectsController@show');
+Route::get('/project/{id}', 'ProjectsController@show');
+
+Route::get('/datatables/data2/{id}','ProjectsController@anyProject');
 
 Route::controller('/', 'ProjectsController', [
     'anyData'  => 'datatables.data',
+//    'anyProject' => 'datatables.data2',
     'getIndex' => 'datatables',
 ]);
+
+
+
+
+//Route::controller('/project', 'TasksController', [
+//    'anyData'  => 'datatables.data',
+//    'getIndex' => 'datatables',
+//]);
