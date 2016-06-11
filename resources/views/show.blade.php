@@ -29,6 +29,9 @@
         $('#projects-table').DataTable({
             processing: true,
             serverSide: true,
+            language: {
+                emptyTable: 'There are no tasks assigned to this project.'
+            },
             ajax: '/datatables/data2/{{ $project_id }}',
             columns: [
                 { data: 'id', name: 'id' },

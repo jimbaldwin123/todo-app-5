@@ -9,6 +9,17 @@ use App\Http\Controllers\Controller;
 
 class TasksController extends Controller
 {
+
+    protected $rules = [
+        'name' => ['required', 'min:3'],
+        'slug' => ['required'],
+        'description' => ['required'],
+    ];
+    
+    public function __construct(){
+        $this->middleware('auth', ['only' => ['edit','create','store','update','destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *

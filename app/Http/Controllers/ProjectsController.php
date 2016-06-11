@@ -9,9 +9,20 @@ use App\Http\Controllers\Controller;
 use App\Project;
 use Yajra\Datatables\Datatables;
 use Log;
+use Input;
+use Redirect;
 
 class ProjectsController extends Controller
 {
+
+    protected $rules = [
+        'name' => ['required', 'min:3'],
+        'slug' => ['required'],
+    ];
+
+    public function __construct(){
+        $this->middleware('auth', ['only' => ['edit','create','store','update','destroy']]);
+    }
 
     /**
      * Displays datatables front end view
@@ -22,7 +33,6 @@ class ProjectsController extends Controller
     {
         return view('projects');
     }
-
     /**
      * Process datatables ajax request.
      *
@@ -56,6 +66,7 @@ class ProjectsController extends Controller
     }
 
 
+
 // ******************** REST methods ********************* /
 
     public function create()
@@ -72,12 +83,12 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, $this->rules);
+       
+        $this->validate($request, $this->rules);
 
-        $input = Input::all();
+        $input = Input::only('name','slug');
         Project::create( $input );
-
-        return Redirect::route('projects.index')->with('message', 'Project created');
+        return redirect('');
     }
 
     /**

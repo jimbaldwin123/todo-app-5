@@ -26,8 +26,12 @@ Route::controllers([
 
 Route::resource('tasks', 'TasksController');
 
+Route::get('/', 'ProjectsController@getIndex');
+Route::get('project/create', 'ProjectsController@create');
+Route::post('project/store', 'ProjectsController@store');
 Route::get('/project/{id}', 'ProjectsController@show');
 Route::get('/datatables/data2/{id}','ProjectsController@anyProject');
+
 
 Route::controller('/', 'ProjectsController', [
     'anyData'  => 'datatables.data',
