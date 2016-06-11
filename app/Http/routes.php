@@ -20,10 +20,10 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-
 Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
+
 
 
 Route::get('/project/{id}', 'ProjectsController@show');
