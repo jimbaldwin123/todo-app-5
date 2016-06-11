@@ -11,25 +11,28 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
-// Route::get('project/{id}', 'ProjectsController@show');
-Route::get('/project/{id}', 'ProjectsController@show');
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('/datatables/data2/{id}','ProjectsController@anyProject');
 
-Route::controller('/', 'ProjectsController', [
-    'anyData'  => 'datatables.data',
-//    'anyProject' => 'datatables.data2',
-    'getIndex' => 'datatables',
+Route::controllers([
+    'password' => 'Auth\PasswordController',
 ]);
 
 
+Route::get('/project/{id}', 'ProjectsController@show');
+Route::get('/datatables/data2/{id}','ProjectsController@anyProject');
+
+Route::resource('tasks', 'TasksController');
 
 
-//Route::controller('/project', 'TasksController', [
-//    'anyData'  => 'datatables.data',
-//    'getIndex' => 'datatables',
-//]);
+Route::controller('/', 'ProjectsController', [
+    'anyData'  => 'datatables.data',
+    'getIndex' => 'datatables',
+]);

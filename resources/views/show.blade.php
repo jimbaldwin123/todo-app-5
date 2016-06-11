@@ -1,7 +1,8 @@
 @extends('app')
 
 @section('content')
-    <h2>Projects</h2>
+    <h2>{{ $title }}</h2>
+    <h4>Tasks</h4>
 
 
     <div></div>

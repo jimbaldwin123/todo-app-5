@@ -43,13 +43,16 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        return view('show', ['project_id' => $id]);
+        $title = Project::find($id)->name;
+        return view('show', ['project_id' => $id, 'title' => $title]);
     }
 
     public function AnyProject($id)
     {
         $tasks = Project::find($id)->tasks;
-        return Datatables::of($tasks)->make(true);
+        return Datatables::of($tasks)
+            ->editColumn('name','<a href="{{ route(\'tasks.show\', [ $id ]) }}">{{$name}}</a>')
+            ->make(true);
     }
 
 
