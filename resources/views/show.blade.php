@@ -3,7 +3,7 @@
 @section('content')
     <h2>{{ $title }}</h2>
     <h4>Tasks</h4>
-
+    @include('projects/partials/_local_nav')
 
     <div></div>
 

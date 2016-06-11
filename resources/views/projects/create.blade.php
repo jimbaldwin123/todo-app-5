@@ -7,12 +7,9 @@
 
             <h1>Create Project</h1>
 
-            <form method="POST" action="/project/store" accept-charset="UTF-8">
-                <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
-
-                @include('projects/partials/_form', ['submit_text' => 'Create Project'])
-
-            </form>
+            {!! Form::model(new App\Project, ['route' => ['project.store']]) !!}
+            @include('projects/partials/_form', ['submit_text' => 'Create Project'])
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

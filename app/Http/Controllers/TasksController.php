@@ -15,9 +15,9 @@ class TasksController extends Controller
         'slug' => ['required'],
         'description' => ['required'],
     ];
-    
+
     public function __construct(){
-        $this->middleware('auth', ['only' => ['edit','create','store','update','destroy']]);
+        // $this->middleware('auth', ['only' => ['edit','create','store','update','destroy']]);
     }
 
     /**

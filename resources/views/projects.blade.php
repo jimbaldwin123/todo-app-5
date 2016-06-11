@@ -30,7 +30,7 @@ $(function() {
     $('#projects-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('datatables.data') !!}',
+        ajax: '/datatables/data',
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },

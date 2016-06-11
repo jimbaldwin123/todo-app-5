@@ -21,7 +21,7 @@ class ProjectsController extends Controller
     ];
 
     public function __construct(){
-        $this->middleware('auth', ['only' => ['edit','create','store','update','destroy']]);
+        // $this->middleware('auth', ['only' => ['edit','create','store','update','destroy']]);
     }
 
     /**
@@ -83,10 +83,10 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-       
-        $this->validate($request, $this->rules);
 
+        $this->validate($request, $this->rules);
         $input = Input::only('name','slug');
+
         Project::create( $input );
         return redirect('');
     }
