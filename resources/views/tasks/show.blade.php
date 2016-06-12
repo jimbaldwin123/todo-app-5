@@ -1,18 +1,14 @@
+
 @extends('app')
 
 @section('content')
-    <h2>{{ $task->name }}</h2>
+    <h2>
+        {!! link_to_route('projects.show', $project->name, [$project->slug]) !!} -
+        {{ $task->name }}
+    </h2>
 
-    <div>
+    <p>{{ $task->description }}</p>
 
-        <div>{{ $task->name }}</div>
-        <div>{{ $task->description }}</div>
+    <p>Completed: {{ $task->completed ? 'Yes' : 'No'}}</p>
 
-    </div>
-
-    <p>
-        edit task
-    </p>
 @endsection
-
-

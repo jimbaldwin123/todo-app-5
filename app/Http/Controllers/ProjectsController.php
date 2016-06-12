@@ -29,9 +29,9 @@ class ProjectsController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function getIndex()
+    public function index()
     {
-        return view('projects');
+        return view('projects.index');
     }
     /**
      * Process datatables ajax request.

@@ -24,6 +24,9 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
+Route::model('tasks', 'Task');
+Route::model('project', 'Project');
+
 Route::resource('tasks', 'TasksController');
 Route::resource('project', 'ProjectsController');
 
@@ -36,4 +39,4 @@ Route::get('/datatables/data2/{id}','ProjectsController@anyProject');
 
 
 Route::get('datatables/data','ProjectsController@anyData');
-Route::get('/','ProjectsController@getIndex');
+Route::get('/','ProjectsController@index');

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Task;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Project;
+use Input;
+use Redirect;
 
 class TasksController extends Controller
 {
@@ -35,9 +38,9 @@ class TasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Project $project)
     {
-        //
+        return view('tasks.create', compact('project'));
     }
 
     /**
@@ -46,9 +49,15 @@ class TasksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Project $project, Request $request)
     {
-        return('store');
+        $this->validate($request, $this->rules);
+
+        $input = Input::all();
+        $input['project_id'] = $project->id;
+        Task::create( $input );
+
+        return Redirect::route('project.show', $project->slug)->with('Task created.');
     }
 
     /**
